@@ -1,0 +1,15 @@
+{
+  "name": "Api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "SumedhZoting <123283676+SumedhZoting@users.noreply.github.com>",
+  "license": "MIT",
+  "scripts": {
+    "app": "node index.js"
+  },
+  "dependencies": {
+    "color-extr-thief": "^2.3.4",
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  }
+}
