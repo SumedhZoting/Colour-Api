@@ -39,6 +39,6 @@ function rgbToHex(r, g, b) {
     return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
 }
 
-app.listen(80, () => {
+app.listen(8080, () => {
     console.log("server started")
 })
