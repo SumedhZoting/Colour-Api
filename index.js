@@ -10,6 +10,7 @@ app.use(bodyParser.json());
 app.use(cors())
 
 app.post("/hex", (req, res) => {
+  console.log("req");
   let colour = []
   ColorThief.getColor(req.body.imgurl)
     .then(color => {
@@ -20,6 +21,7 @@ app.post("/hex", (req, res) => {
 })
 
 app.post("/rgb", (req, res) => {
+  console.log("req");
   ColorThief.getColor(req.body.imgurl)
     .then(color => {
       res.send(color)
@@ -27,6 +29,7 @@ app.post("/rgb", (req, res) => {
 });
 
 app.post("/palette", (req, res) => {
+  console.log("req");
   if (req.body.imgurl == null) { return; }
   ColorThief.getPalette(req.body.imgurl, 5)
     .then(palette => {
