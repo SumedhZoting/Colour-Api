@@ -10,9 +10,8 @@ app.use(bodyParser.json());
 app.use(cors())
 
 app.post("/hex", (req, res) => {
-  console.log("req");
   let colour = []
-  ColorThief.getColor(req.body.imgurl)
+  ColorThief.getColor(req.body.imgurl + ".jpg")
     .then(color => {
       domcolour = rgbToHex(color[0], color[1], color[2])
       colour.push(domcolour)
@@ -21,15 +20,13 @@ app.post("/hex", (req, res) => {
 })
 
 app.post("/rgb", (req, res) => {
-  console.log("req");
-  ColorThief.getColor(req.body.imgurl)
+  ColorThief.getColor(req.body.imgurl + ".jpg")
     .then(color => {
       res.send(color)
     })
 });
 
 app.post("/palette", (req, res) => {
-  console.log("req");
   if (req.body.imgurl == null) { return; }
   ColorThief.getPalette(req.body.imgurl, 5)
     .then(palette => {
@@ -53,7 +50,7 @@ function rgbToHex(r, g, b) {
   return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
 }
 
-app.listen(8080, () => {
+app.listen(80, () => {
   console.log("server started")
 })
 
