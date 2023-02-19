@@ -19,7 +19,7 @@ app.use(function(req, res, next) {
 
 app.post("/hex", (req, res) => {
   let colour = []
-  ColorThief.getColor(req.body.imgurl + ".jpg")
+  ColorThief.getColor(req.body.imgurl)
     .then(color => {
       domcolour = rgbToHex(color[0], color[1], color[2])
       colour.push(domcolour)
@@ -28,7 +28,7 @@ app.post("/hex", (req, res) => {
 })
 
 app.post("/rgb", (req, res) => {
-  ColorThief.getColor(req.body.imgurl + ".jpg")
+  ColorThief.getColor(req.body.imgurl)
     .then(color => {
       res.send(color)
     })
