@@ -9,15 +9,19 @@ app.use(bodyParser.json());
 
 app.use(cors())
 
-app.use(function(req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    next();
+app.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  next();
 });
 
 app.post("/hex", (req, res) => {
+  if (req.body.imgurl == null || req.body.imgurl == undefined || req.body.imgurl == "") {
+    res.sendStatus(400)
+    return;
+  }
   let colour = []
   ColorThief.getColor(req.body.imgurl)
     .then(color => {
@@ -28,6 +32,10 @@ app.post("/hex", (req, res) => {
 })
 
 app.post("/rgb", (req, res) => {
+  if (req.body.imgurl == null || req.body.url == undefined || req.body.url == "") {
+    res.sendStatus(400)
+    return;
+  }
   ColorThief.getColor(req.body.imgurl)
     .then(color => {
       res.send(color)
@@ -35,7 +43,10 @@ app.post("/rgb", (req, res) => {
 });
 
 app.post("/palette", (req, res) => {
-  if (req.body.imgurl == null) { return; }
+  if (req.body.imgurl == null || req.body.imgurl == undefined || req.body.imgurl == "") {
+    res.sendStatus(400)
+    return;
+  }
   ColorThief.getPalette(req.body.imgurl, 5)
     .then(palette => {
       hexcolours = []
